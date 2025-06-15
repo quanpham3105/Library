@@ -12,7 +12,7 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    public Book updateBook(Book book) {
+    public Book addBook(Book book) {
         return bookRepository.save(book);
     }
 
@@ -20,15 +20,19 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public void deleteBook(Book book) {
-        bookRepository.delete(book);
+    public Book getBookById(int id) {
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
     }
 
-    public void changePageNumber(int pageNumber, Book book) {
+    public void deleteBook(int id) {
+        bookRepository.deleteById(id);
+    }
+
+    public Book changePageNumber(int pageNumber, int id) {
+        Book book =  bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
         book.setPageNumber(pageNumber);
-    }
-
-    public void readOrNot(boolean read, Book book) {
-        book.setFinished(read);
+        return bookRepository.save(book);
     }
 }

@@ -13,7 +13,6 @@ public class Book {
     private String title;
     private String author;
     private int pageNumber;
-    private boolean finished;
 
     public int getId() {
         return id;
@@ -45,13 +44,5 @@ public class Book {
 
     public void setPageNumber(int pageNumber) {
         this.pageNumber = pageNumber;
-    }
-
-    public boolean isFinished() {
-        return finished;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished = finished;
     }
 }
